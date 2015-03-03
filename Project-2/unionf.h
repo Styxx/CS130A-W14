@@ -31,7 +31,7 @@ class UFStruct {
 		Vertex yRoot = find(y);			// Get root of y
 		
 		// If x and y are in the same set
-		if (xRoot.value == yRoot.value){
+		if (xRoot == yRoot){
 			return;		// Do nothing
 		}
 		
