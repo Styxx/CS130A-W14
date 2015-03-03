@@ -8,7 +8,8 @@
 
 */
 
-class UFStruct {
+class Graph {
+	
 	public:
 	void makeset(int x) {
 		Vertex node = new Vertex;
@@ -62,15 +63,5 @@ what's path compression?
 	it jus means you need to add a thing that parses back up the tree
 	something like while(parent.parent != null) parent = parent.parent;
 */
-
-
-class Vertex {
-	public:
-	Vertex* root;				// Pointer to root
-	Vertex* parent;				// Pointer to parent
-	int pWeight;				// Weight of edge to parent
-	int value;				// Node's value
-	int rank;				// Size of set
-};
 
 
