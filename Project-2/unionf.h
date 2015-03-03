@@ -10,7 +10,7 @@
 
 class UFStruct {
 	public:
-	makeset(int x) {
+	void makeset(int x) {
 		Vertex node = new Vertex;
 		node.value = x;
 		node.parent = node;
@@ -19,20 +19,20 @@ class UFStruct {
 		node.pWeight = 0;
 	}
 	
-	find(Vertex* x){
+	Vertex* find(Vertex* x){
 		if(x.parent != x){
 			x.parent = find(x.parent);
 		}
 		return x.parent;
 	}
 	
-	unio(Vertex* x, Vertex* y){
+	void unio(Vertex* x, Vertex* y){
 		Vertex xRoot = find(x);			// Get root of x
 		Vertex yRoot = find(y);			// Get root of y
 		
 		// If x and y are in the same set
 		if (xRoot.value == yRoot.value){
-			return;				// Do nothing
+			return;		// Do nothing
 		}
 		
 		//Otherwise
