@@ -7,4 +7,9 @@ class Vertex {
 	int pWeight;				// Weight of edge to parent
 	int value;				// Node's value
 	int rank;				// Size of set
+	
+	Vertex(){
+		
+		
+	}
 };
