@@ -46,6 +46,8 @@ class UFStruct {
 			yRoot.parent = xRoot;
 			xRoot.rank += 1;		// Increase x's rank by 1.
 		}
+		
+		// Update all pointers in smaller tree?
 	}
 	
 };
