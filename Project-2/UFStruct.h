@@ -1,3 +1,17 @@
+/*
+	Union-Find Data Structure (UFStruct)
+	UF() - 		Empty constructor 
+	UF(int num) - 	Constructor, creating DS with num empty sets
+	Find(x) - 	Return leader of set containing x.
+	Union(x,y) - 	Changes family by merging two sets - the set containing x and the set containing y.
+				No-op if x and y are in the same set. (Can check by seeing if leaders are same)
+				Merge by setting leader of all vertexes in smaller set to leader of bigger set.
+	ifPath(x,y) -	Checks if there is a path between x and y.
+	Count()	-	Returns number of sets in the DS
+
+*/
+
+
 #include <stdio>
 #include <vector>
 using namespace std
@@ -69,7 +83,7 @@ class UFStruct {
 		// Checks if there is a path between x and y.
 		// If leaders are the same, there is a path.
 		// Necessary for O(1) cycle checks
-		bool UFStruct::Path(int x, int y){
+		bool UFStruct::ifPath(int x, int y){
 			return Find(x) == Find(y);
 		}
 		
