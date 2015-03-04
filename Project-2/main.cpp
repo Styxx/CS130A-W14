@@ -84,7 +84,7 @@ int main() {
     		t2 = edges[i]->node2;
 	    	
 		//If there is no path already between the two nodes
-		if(!ds.Path(t1,t2)) {
+		if(!ds.isPath(t1,t2)) {
 			cout << "Edge (" << t1 <<","<< t2 <<") successfully inserted" << endl;
 		}
     		else{
@@ -107,7 +107,7 @@ int main() {
     		t2 = edges[i]->node2;
 	   	
     		// If they're not connected, add to mst
-		if (!ms.connected(t1,t2)) {
+		if (!ms.isPath(t1,t2)) {
 			ms.merge(t1,t2);
 			mst[j++] = edges[i];
 			cost = cost + edges[i]->weight;
