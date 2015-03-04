@@ -48,13 +48,20 @@ int main() {
 	// numVerts is now # of verticies
 	// numEdges is now # of edges
 	
+	// DEBUG for input
+	cout << "numVerts: " << numVerts << " " << "numEdges: " << numEdges << endl;
+	
 	// Create structures
 	edges = new Edge*[numEdges];
 	UFStruct ds(numVerts);		// Normal graph
 	UFStruct ms(numVerts);		// MST
 	
+	// DEBUG for structs creations
+	cout << "Structures created" << endl;
 	
-  	//Read the rest of the file, processing edges
+	
+  	// Read the rest of the file, processing edges
+  	// Format: Vert1, Vert2, Weight
   	while (!cin.eof()) {
     		arg1 = arg2 = arg3 = -1;
     		getline(cin,line);            	//Next line
@@ -66,6 +73,9 @@ int main() {
     		chunk = strtok(NULL,"\n");      // Get final number (weight of edge)
     		arg3 = atoi(chunk);
     		
+    		// DEBUG for input
+    		cout << "Vert1: " << arg1 << " " << "Vert2: " << arg2 << " " << "Weight: " << arg3 << endl;
+    		
 		//Create new connection
     		edges[i] = new Edge;
 		edges[i]->node1 = arg1;
@@ -73,6 +83,9 @@ int main() {
     		edges[i]->weight = arg3;
     		
     		i++;
+    		
+    		// DEBUG for edge creation
+    		cout << "Edge created" << endl;
   	}
 	
 	// Create graph from edge array, for output messages
