@@ -53,10 +53,8 @@ int main() {
 	UFStruct ds(numVerts);		// Normal graph
 	UFStruct ms(numVerts);		// MST
 	
-	  
-	  
-	  
-  	//Read the rest of the file.
+	
+  	//Read the rest of the file, processing edges
   	while (!cin.eof()) {
     		arg1 = arg2 = arg3 = -1;
     		getline(cin,line);            	//Next line
@@ -77,8 +75,7 @@ int main() {
     		i++;
   	}
 	
-	// From edge array, create graph.
-	// Add to graph and output messages
+	// Create graph from edge array, for output messages
     	for (i=j=0; i < numEdges && j < numVerts-1; i++){
     		t1 = edges[i]->node1;
     		t2 = edges[i]->node2;
@@ -90,21 +87,22 @@ int main() {
     		else{
     			cout << "Edge (" << t1 <<","<< t2 <<") creates cycle" << endl;
 		}
-    		// Add to graph
+    		// No matter what, we're adding to the graph.
+    		// Move to the next edge to process.
     		ds.merge(t1,t2);
 	 	graph[j++] = edges[i];
     	}
 
 
- 	// Tree is created. Now sort the edges for MST
-    	// Algorithm helps us sort since we made a comp funct.
+ 	// Graph is created. Now sort the edges for MST
+    	// Algorithm helps us sort since we made a comp funct. above
     	sort(edges, edges+numEdges, compare);
 	    
     	// Now sorted, add to MST
     	mst = new Edge*[numVerts-1];			// MST contains 1 less edges than the number of verticies
 	for (i=j=0; i < numEdges && j < numVerts-1; i++){
 		t1 = edges[i]->node1;
-    		t2 = edges[i]->node2;
+		t2 = edges[i]->node2;
 	   	
     		// If they're not connected, add to mst
 		if (!ms.isPath(t1,t2)) {
