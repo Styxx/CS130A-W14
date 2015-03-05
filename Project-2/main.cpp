@@ -19,6 +19,10 @@ bool compare(Edge *x, Edge *y) {
 }
 
 
+/*
+	Code currently does not sort the same as output does
+	Possibly might be <= instead of <?
+*/
 
 int main() {
 	// Inputs
