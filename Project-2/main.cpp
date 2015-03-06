@@ -15,6 +15,12 @@ struct Edge{
 
 // Used to sort edges by weight for algorithm
 bool compare(Edge *x, Edge *y) {
+	if (x->weight == y->weight){
+		if (x->node1 == y->node1){
+			return x->node2 < y->node2;
+		}
+		return x->node1 < y->node1;
+	}
 	return x->weight < y->weight;
 }
 
