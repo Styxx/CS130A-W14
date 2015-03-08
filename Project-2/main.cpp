@@ -25,10 +25,6 @@ bool compare(Edge *x, Edge *y) {
 }
 
 
-/*
-	Code currently does not sort the same as output does
-	Possibly might be <= instead of <?
-*/
 
 int main() {
 	// Inputs
@@ -39,17 +35,14 @@ int main() {
 	
 	// Outputs
 	int cost = 0;
-	bool noMST = false;
 	
 	// Iterators and temps
 	int i = 0;
 	int j = 0;
-	int k = 0;
 	int t1,t2;
 	
 	// Structs
   	Edge **edges, **mst;
-  	int **nodes;
 	//Edge **graph;
 
 	// DEBUG for input
@@ -100,14 +93,11 @@ int main() {
 	
 			//Create new connection
     		edges[i] = new Edge;
-		edges[i]->node1 = arg1;
-		edges[i]->node2 = arg2;
+			edges[i]->node1 = arg1;
+			edges[i]->node2 = arg2;
     		edges[i]->weight = arg3;
     		
     		i++;
-    		
-    		nodes[k] = arg1; k++;
-    		nodes[k] = arg2; k++;
     		
     		// DEBUG for edge creation
     		//cout << "Edge created" << endl;
@@ -167,27 +157,12 @@ int main() {
 	}
 
 	// Print out MST
-	for(k = 0; k < numVerts; k++){
-		for (j = 0; j < numVerts; j++ {
-			if(!ms.isPath(nodes[k],nodes[j])){
-				noMST = true;
-			}	
-		}
+	for (i=0; i < j; i++){
+		cout << mst[i]->node1 << " " << mst[i]->node2 << endl;
 	}
-	
-	if(noMST){
-		cout << "ERROR: MST not found" << endl;
-	}
-	else{
-		for (i=0; i < j; i++){
-			cout << mst[i]->node1 << " " << mst[i]->node2 << endl;
-		}		
-	}
-	
-
 	
 	// Print out cost of MST
-	cout << cost << endl;
+	cout << cost;
 
 
 	return 0;
