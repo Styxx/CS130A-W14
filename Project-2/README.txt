@@ -4,7 +4,7 @@ Turnin Date:
 
 UFStruct.h:	Class for the Union-Find Data Structure
 main.cpp:	Main program that parses input from txt file and outputs MST
-			Also contains the edge structure to assist in helping with graph and MST creation
+		Also contains the edge structure to assist in helping with graph and MST creation
 makefile:	makes the executable file
 README.txt:	This file
 
