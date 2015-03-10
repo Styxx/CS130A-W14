@@ -35,19 +35,14 @@ int main() {
 	
 	// Outputs
 	int cost = 0;
-	bool err = false;
 	
 	// Iterators and temps
 	int i = 0;
 	int j = 0;
-	int k = 0;
-	int l = 0;
 	int t1,t2;
 	
 	// Structs
   	Edge **edges, **mst;
-  	int **vertexes;
-  	int mstLeader;
 	//Edge **graph;
 
 	// DEBUG for input
@@ -85,7 +80,7 @@ int main() {
     		arg1 = arg2 = arg3 = -1;
     		getline(cin,line);            	//Next line
     		
-		chunk = strtok(&line[0]," ");   // Get first number (first vertex)
+			chunk = strtok(&line[0]," ");   // Get first number (first vertex)
     		arg1 = atoi(chunk);
     		chunk = strtok(NULL," ");       // Get second number (second vertex)
     		arg2 = atoi(chunk);
@@ -96,15 +91,13 @@ int main() {
     		//cout << "Vert1: " << arg1 << " " << "Vert2: " << arg2 << " " << "Weight: " << arg3 << endl;
     	
 	
-		//Create new connection
+			//Create new connection
     		edges[i] = new Edge;
-		edges[i]->node1 = arg1;
-		edges[i]->node2 = arg2;
+			edges[i]->node1 = arg1;
+			edges[i]->node2 = arg2;
     		edges[i]->weight = arg3;
-    		i++;
     		
-    		vertexes[k] = arg1; k++;
-    		vertexes[k] = arg2; k++;
+    		i++;
     		
     		// DEBUG for edge creation
     		//cout << "Edge created" << endl;
@@ -114,42 +107,40 @@ int main() {
 			cout << "Weight: " << edges[i-1]->weight << endl;
 			*/
   	}
-  	
-  	// DEBUG for vertex list;
 
 	// Sort the edges before creating the graph
    	// Algorithm helps us sort since we made a comp funct. above
-    	sort(edges, edges+numEdges, compare);
+    sort(edges, edges+numEdges, compare);
 
 	// DEBUG for sorting
 	//cout << "Graph successfully sorted" << endl;
 
 	// Create graph from edge array, for output messages
-	for (i=j=0; i < numEdges && j < numVerts-1; i++){
-		t1 = edges[i]->node1;
-	    	t2 = edges[i]->node2;
-		   	
-			//If there is no path already between the two nodes
-			if(!ds.isPath(t1,t2)) {
-				cout << "Edge (" << t1 <<","<< t2 <<") successfully inserted" << endl;
-			}
-	   			else{
-	   			cout << "Edge (" << t1 <<","<< t2 <<") creates cycle" << endl;
-			}
-			
-			
-	   		// No matter what, we're adding to the graph.
-	   		// Move to the next edge to process.
-			ds.Union(t1,t2);
-			
-			// THIS SEGFAULTS? Do i even need it?
-		 	//graph[j] = edges[i];
+    for (i=j=0; i < numEdges && j < numVerts-1; i++){
+    	t1 = edges[i]->node1;
+    	t2 = edges[i]->node2;
+	   	
+		//If there is no path already between the two nodes
+		if(!ds.isPath(t1,t2)) {
+			cout << "Edge (" << t1 <<","<< t2 <<") successfully inserted" << endl;
+		}
+   			else{
+   				cout << "Edge (" << t1 <<","<< t2 <<") creates cycle" << endl;
+		}
+		
+		
+   		// No matter what, we're adding to the graph.
+   		// Move to the next edge to process.
+		ds.Union(t1,t2);
+		
+		// THIS SEGFAULTS? Do i even need it?
+	 	//graph[j] = edges[i];
 		
    	 }
 
 	    
-	// Now create MST
-	mst = new Edge*[numVerts-1];			// MST contains 1 less edges than the number of verticies
+    // Now create MST
+    mst = new Edge*[numVerts-1];			// MST contains 1 less edges than the number of verticies
 
 	for (i=j=0; i < numEdges && j < numVerts-1; i++){
 		t1 = edges[i]->node1;
@@ -165,32 +156,29 @@ int main() {
 		// Otherwise, do nothing
 	}
 	
-	/***** Check if this works *****/
-	// Get the leader of the MST
-	mstLeader = ms.find(mst[0]);
-	
-	// If all the leaders of the MST are not the same, then there are multiple msts
-	for (l=1; l < k; l++){
-		if (mstLeader != ms.find(mst[l])){
-			err = true;
-		}
+	// Check if the MST is an actual MST.
+	bool err = false;
+	int mstLeader = ms.Find(mst[0]->node1);
+
+	for (int k = 1; k < j; k++){
+	  if (mstLeader != ms.Find(mst[k]->node1)){
+	    err = true;
+	  }
 	}
 
-	// If multiple MSTS, error
+	// If there is an error, print out error message
 	if (err){
-		cout << "ERROR: MST not found" << endl;
+	  cout << "ERROR: MST not found.";
 	}
-	// Otherwise, print out MST
 	else {
-		// Print out MST
-		for (i=0; i < j; i++){
-			cout << mst[i]->node1 << " " << mst[i]->node2 << endl;
-		}
+	  // Otherwise, print out MST
+	  for (i=0; i < j; i++){
+	    cout << mst[i]->node1 << " " << mst[i]->node2 << endl;
+	  }
 	
-		// Print out cost of MST
-		cout << cost;
+	  // Print out cost of MST
+	  cout << cost;
 	}
-	/***** Check if this works *****/
 
 	return 0;
 	
